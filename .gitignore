@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Default ignored files
-/workspace.xml
+/.idea/workspace.xml
