@@ -1,0 +1,15 @@
+#addCity{
+
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px  inset;
+}
+.favorites{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}

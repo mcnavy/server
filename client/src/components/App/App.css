@@ -1,0 +1,39 @@
+
+.App {
+
+  width: 700px;
+  z-index: 100;
+  opacity: 0.9;
+  margin:auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 7px  double;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.mainInfo{
+    display: grid;
+}
+.topInfo{
+    font-size:2em;
+    padding:5px;
+    display: flex;
+}
+
+
+
+
+
+
+h2 {
+  font-size: 25px;
+
+  font-weight: normal;
+  text-align: left;
+}
+
