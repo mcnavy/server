@@ -14,7 +14,7 @@ class Weather extends React.Component{
         console.warn(this.props.data.pending)
 
         if(this.props.data.error){
-            //this.props.deleteCity(this.props.id);
+            setTimeout(this.props.deleteCity,2000);
             return(
                 <div className='Weather error'>
                     <div>Error</div>
