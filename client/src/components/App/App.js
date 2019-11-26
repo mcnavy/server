@@ -3,22 +3,26 @@ import '../Weather/Weather.css'
 import '../City/AddCity.css'
 import React from 'react';
 import axios from 'axios';
-import {success,errorW,pending} from "../../store/actions";
+import {
+    fetchWeatherError,fetchWeatherPending,fetchWeatherSuccess
+} from "../../store/actions";
 import {connect} from 'react-redux';
 import AddCityForm from "../City/AddCity";
-import {DEFAULT_COORDS} from "../../store/constants";
+import {BE, DEFAULT_COORDS} from "../../store/constants";
 import {getCurrentCity} from "../../store/reducers";
 import Weather from "../Weather/Weather";
 import FavoriteWeatherList from "../Weather/FavoriteWeather";
 
 const findWeatherApiCall = (dispatch,coords,id) =>{
     axios
-        .get(`https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=metric&APPID=96c2fc4713551153e7966978b449861a`)
+        .get(
+            `${BE}weather/coordinates?lat=${coords.latitude}&long=${coords.longitude}`
+        )
         .then(response =>{
-            dispatch(success(response.data,id));
+            dispatch(fetchWeatherSuccess(response.data,id));
         })
         .catch(error =>{
-           dispatch(errorW(error,id));
+           dispatch(fetchWeatherError(error,id));
         });
 };
 export const findWeather = () =>{
@@ -28,7 +32,7 @@ export const findWeather = () =>{
             enableHighAccuracy:true,
             timeout:300
         };
-        dispatch(pending(id));
+        dispatch(fetchWeatherPending(id));
 
             navigator.geolocation.getCurrentPosition(position => {
                 findWeatherApiCall(dispatch,position.coords,id);
@@ -65,10 +69,10 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    current: getCurrentCity(state)
+const mapStateToProps = state => ({
+    currentCity: getCurrentCity(state)
 });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     getWeather : () => dispatch(findWeather())
 });
 

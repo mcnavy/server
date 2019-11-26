@@ -54,7 +54,7 @@ const weatherReducer = (state = constant.INITIAL_STATE.weatherList, action = {})
         case constant.FCE:
             return{
                 ...state,
-                isFetching: false,
+                isFetching: true,
                 error : action.error
             };
         case constant.ACP:
@@ -73,8 +73,7 @@ const weatherReducer = (state = constant.INITIAL_STATE.weatherList, action = {})
         case constant.ACE:
             return {
                 ...state,
-                error: action.error,
-                newCity: null
+                error: action.error
             };
         case constant.DCP:
             return{

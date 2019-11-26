@@ -11,10 +11,10 @@ class Weather extends React.Component{
 
     render(){
 
-        console.warn(this.props.data.pending)
 
-        if(this.props.data.error){
-            setTimeout(this.props.deleteCity,2000);
+
+        if(this.props.error){
+            console.log("error")
             return(
                 <div className='Weather error'>
                     <div>Error</div>
@@ -22,9 +22,11 @@ class Weather extends React.Component{
                 </div>
             );
         }else{
-            const weather = this.props.data.weather;
-            if(this.props.data.pending === false){
-                const img = this.props.data.id ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`:
+            console.log("not erro")
+            const weather = this.props.weather;
+
+            if(this.props.pending === false){
+                const img = this.props.id ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`:
                     `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${weather.weather[0].icon}.png`
                 return(
                     <div className= "Weather">
@@ -39,7 +41,7 @@ class Weather extends React.Component{
                             <div>Wind speed:{weather.wind.speed}</div>
                             <div>Clouds:{weather.clouds.all}%</div>
                         </div>
-                        {this.props.data.id !==0 && <button onClick={this.props.deleteCity}>x</button>}
+                        {this.props.id !==0 && <button onClick={this.props.deleteCity}>x</button>}
                     </div>
                 );
             }else{

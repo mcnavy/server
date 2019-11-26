@@ -10,5 +10,5 @@ export const getCurrentCity = state => state.currentCity;
 export const getCityToDelete = state => state.weatherList.cityToDelete;
 export default combineReducers({
     weatherList: weatherReducer,
-    currentCiy: currentCityReducer
+    currentCity: currentCityReducer
 })

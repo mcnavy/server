@@ -1,7 +1,10 @@
 import React from 'react';
-import {addCity} from "../../store/actions";
+
 import {getCities} from "../../store/reducers";
 import {connect} from "react-redux";
+import axios from "axios"
+import { addCityPending,addCityError,addCitySuccess} from "../../store/actions";
+import {BE} from "../../store/constants";
 
 class AddCity extends React.Component {
     constructor(props){
@@ -40,11 +43,28 @@ class AddCity extends React.Component {
         )
     }
 }
+const addCityAction = name =>{
+    return dispatch =>{
+        dispatch(addCityPending(name));
+        axios
+            .post(`${BE}favourites`,{ name})
+            .then(response =>{
+                const city = {
+                    id: response.data.city._id,
+                    name: response.data.city.name
+                };
+                dispatch(addCitySuccess(city));
+            })
+            .catch(error =>{
+                dispatch(addCityError(error));
+            });
+    };
+};
 const mapStateToProps = state => ({
     cities: getCities(state)
 });
 const mapDispatchToProps = dispatch =>({
-    addCity:name=>dispatch(addCity(name))
+    addCity:name=>dispatch(addCityAction(name))
 });
 const AddCityForm = connect(mapStateToProps,mapDispatchToProps)(AddCity);
 export default AddCityForm;
