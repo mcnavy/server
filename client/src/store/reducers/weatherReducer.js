@@ -1,7 +1,9 @@
-import {ADD_CITY, DELETE_CITY, INITIAL_STATE, PENDINGW,SUCCESSW,ERRORW} from "../constants";
+import * as constant from '../constants'
+import {FWE} from "../constants";
 
 
-const weatherReducer = (state = INITIAL_STATE.weatherList, action = {}) => {
+
+const weatherReducer = (state = constant.INITIAL_STATE.weatherList, action = {}) => {
     let changedCities = [];
 
     if (action.id === 0) {
@@ -9,7 +11,7 @@ const weatherReducer = (state = INITIAL_STATE.weatherList, action = {}) => {
     }
 
     switch (action.type) {
-        case PENDINGW:
+        case constant.FWP:
             changedCities = state.cities.map(city =>
                 city.id === action.id ? {...city, pending: true} : city
             );
@@ -18,7 +20,7 @@ const weatherReducer = (state = INITIAL_STATE.weatherList, action = {}) => {
                 cities: changedCities
             };
 
-        case SUCCESSW:
+        case constant.FWS:
             changedCities = state.cities.map(city =>
                 city.id === action.id ? {...city, pending: false, weather: action.weather} : city
             );
@@ -27,7 +29,7 @@ const weatherReducer = (state = INITIAL_STATE.weatherList, action = {}) => {
                 cities: changedCities
             };
 
-        case ERRORW:
+        case constant.FWE:
             changedCities = state.cities.map(city =>
                 city.id === action.id ? {...city, pending: false, error: action.error} : city
             );
@@ -36,26 +38,56 @@ const weatherReducer = (state = INITIAL_STATE.weatherList, action = {}) => {
                 cities: changedCities
             };
 
-        case ADD_CITY:
+        case constant.FCP:
 
-            changedCities = [
-                ...state.cities,
-                {
-                    id: state.cities ? state.cities.length+1 : 1,
-                    name: action.name
-                }
-            ];
             return {
                 ...state,
-
-                cities: changedCities
+                isFetching: true,
             };
 
-        case DELETE_CITY:
+        case constant.FCS:
+            return{
+                ...state,
+                cities: action.cities,
+                isFetching: false
+            };
+        case constant.FCE:
+            return{
+                ...state,
+                isFetching: false,
+                error : action.error
+            };
+        case constant.ACP:
+            return{
+                ...state,
+                newCity : action.name
+            };
+        case constant.ACS:
+            changedCities = [...state.cities, action.city];
+            return {
+                ...state,
+                error: null,
+                cities : changedCities,
+                newCity: null
+            };
+        case constant.ACE:
+            return {
+                ...state,
+                error: action.error,
+                newCity: null
+            };
+        case constant.DCP:
+            return{
+                ...state,
+                cityToDelete: action.id
+            };
+        case constant.DCS:
             changedCities = state.cities.filter(city => city.id !== action.id);
             return {
                 ...state,
-                cities: changedCities
+                cities:changedCities,
+                error:null,
+                cityToDelete: null
             };
 
         default:

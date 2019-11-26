@@ -1,24 +1,24 @@
-import {INITIAL_STATE, PENDINGW,SUCCESSW,ERRORW} from "../constants";
-const currentCityReducer = (state = INITIAL_STATE.current, action = {}) => {
+import * as constant from '../constants'
+const currentCityReducer = (state = constant.INITIAL_STATE.currentCity, action = {}) => {
     if (action.id !== 0) {
         return state;
     }
 
     switch (action.type) {
-        case PENDINGW:
+        case constant.FWP:
             return {
                 ...state,
                 pending: true
             };
 
-        case SUCCESSW:
+        case constant.FWS:
             return {
                 ...state,
                 pending: false,
                 weather: action.weather
             };
 
-        case ERRORW:
+        case constant.FWE:
             return {
                 ...state,
                 pending: false,

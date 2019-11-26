@@ -1,17 +1,28 @@
-export const ADD_CITY = 'ADD_CITY';
-export const DELETE_CITY = 'DELETE_CITY';
-
-export const PENDINGW = 'PENDINGW';
-export const SUCCESSW = 'SUCCESSW';
-export const ERRORW = 'ERRORW';
+export const FWP = 'FWP';
+export const FWS = 'FWS';
+export const FWE = 'FWE';
+export const FCP = 'FCP';
+export const FCS = 'FCS';
+export const FCE = 'FCE';
+export const ACP = 'ACP';
+export const ACS = 'ACS';
+export const ACE = 'ACE';
+export const DCP = 'DCP';
+export const DCS = 'DCS';
+export const DCE = 'DCE';
+export const BE = 'http://localhost:3001/';
 export const INITIAL_STATE = {
 
-    'weatherList':{
-        'cities':[],
+    weatherList:{
+        cities:[],
+        error : null,
+        isFetching: false,
+        newCity : null,
+        cityToDelete:null
 
     },
-    'current':{
-        'id':0
+    currentCity:{
+        id:0
     }
 
 };
