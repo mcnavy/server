@@ -1,8 +1,8 @@
 import Favourite from '../models/favouriteCity';
-const addToFavourites = (req, res, next) => {
+const addToFavourites = (req, res) => {
     const favouriteCity = new Favourite({
         name: req.body.name
-    })
+    });
     favouriteCity
         .save()
         .then(city =>res.status(201).json({success:true,message:'City was added',city}))

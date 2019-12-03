@@ -11,17 +11,21 @@ function ignoreFavicon(req, res, next) {
         next();
     }
 }
-const mongoDB = 'mongodb+srv://super:vbifyz99@weather-ggjeu.gcp.mongodb.net/test?retryWrites=true&w=majority';
+const mongoDB = 'mongodb+srv://afanas:vbifyz99@weather-zjak3.mongodb.net/test?retryWrites=true&w=majority';
 
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoDB, { useNewUrlParser: true,useUnifiedTopology: true })
     .then(() => console.log('DB connected'))
-    .catch((err) => console.log('DB error', err))
+    .catch((err) => console.log('DB error', err));
 app.use(ignoreFavicon);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', index_router);
+const port = 3001;
+app.set('port', port);
+
+app.listen(port,()=>console.log(`App listening port : ${port}`));
 
 export default app;

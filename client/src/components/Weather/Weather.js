@@ -14,7 +14,7 @@ class Weather extends React.Component{
 
 
         if(this.props.error){
-            console.log("error")
+
             return(
                 <div className='Weather error'>
                     <div>Error</div>
@@ -22,26 +22,29 @@ class Weather extends React.Component{
                 </div>
             );
         }else{
-            console.log("not erro")
-            const weather = this.props.weather;
 
-            if(this.props.pending === false){
-                const img = this.props.id ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`:
-                    `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${weather.weather[0].icon}.png`
+
+
+            if(this.props.data.pending === false){
+                const data = this.props.data.weather;
+                const img = this.props.data.id ? `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`:
+                    `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${data.weather[0].icon}.png`
+
                 return(
                     <div className= "Weather">
                         <div className="topInfo">
                             <div className="cityIcon"><img alt="weather icon" src={img}/></div>
-                            <div>{weather.name}</div>
-                            <div>{weather.main.temp}</div>
+                            <div>{data.name}</div>
+                            <div>{data.main.temp}</div>
                         </div>
                         <div className="mainInfo">
 
-                            <div>Humidity:{weather.main.humidity} %</div>
-                            <div>Wind speed:{weather.wind.speed}</div>
-                            <div>Clouds:{weather.clouds.all}%</div>
+                            <div>Humidity:{data.main.humidity} %</div>
+                            <div>Wind speed:{data.wind.speed}</div>
+                            <div>Clouds:{data.clouds.all}%</div>
                         </div>
-                        {this.props.id !==0 && <button onClick={this.props.deleteCity}>x</button>}
+                        {this.props.data.id !==0 && <button onClick={this.props.deleteCity}>x</button>}
+
                     </div>
                 );
             }else{

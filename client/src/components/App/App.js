@@ -30,7 +30,8 @@ export const findWeather = () =>{
         const id = 0;
         const options = {
             enableHighAccuracy:true,
-            timeout:300
+            timeout:5000,
+            maximumAge: 0
         };
         dispatch(fetchWeatherPending(id));
 
@@ -56,7 +57,7 @@ class App extends React.Component {
                         <h2>Weather here</h2>
                         <button onClick={() => this.props.getWeather()}>Update geolocation</button>
                     </div>
-                    <Weather key ={0} data ={this.props.current} findWeatherApiCall ={() =>this.props.getWeather()}/>
+                    <Weather key ={0} data ={this.props.currentCity} findWeatherApiCall ={() =>this.props.getWeather()}/>
                     <div className="favorites">
                         <h2>Favorites</h2>
                         <AddCityForm/>

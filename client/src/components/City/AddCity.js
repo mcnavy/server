@@ -47,7 +47,7 @@ const addCityAction = name =>{
     return dispatch =>{
         dispatch(addCityPending(name));
         axios
-            .post(`${BE}favourites`,{ name})
+            .post(`${BE}favourites`,{name})
             .then(response =>{
                 const city = {
                     id: response.data.city._id,

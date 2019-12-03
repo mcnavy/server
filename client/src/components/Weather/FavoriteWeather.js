@@ -65,6 +65,14 @@ const mapDispatchToProps = (dispatch) => ({
     fetchCities: () => dispatch(fetchCitiesAction())
 });
 class FavoriteWeather extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    componentDidMount() {
+        this.props.fetchCities();
+    }
+
+
     render(){
         return(
             <div className="Weather2">

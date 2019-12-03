@@ -17,6 +17,7 @@ const getWeatherByCityName = (req, res) => {
     }
 };
 
+
 const getWeatherByCoords = (req, res) => {
     const long = parseFloat(req.query.long);
     const lat = parseFloat(req.query.lat);

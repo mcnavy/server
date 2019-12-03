@@ -4,7 +4,7 @@ import weatherController from '../controllers/weatherController';
 
 const router = express.Router();
 
-router.get('/weather', weatherController.getWeatherByCityName);;
+router.get('/weather', weatherController.getWeatherByCityName);
 
 router.get('/weather/coordinates', weatherController.getWeatherByCoords);
 
