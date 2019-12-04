@@ -18,13 +18,13 @@ const getWeatherByCityName = (req, res) => {
 };
 
 
-const getWeatherByCoords = (req, res) => {
+const getWeatherByCoords = (req, res) => {r
     const long = parseFloat(req.query.long);
     const lat = parseFloat(req.query.lat);
 
     if (!isNaN(long) && !isNaN(lat)) {
         axios
-            .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=96c2fc4713551153e7966978b449861a`)
+            .get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&APPID=96c2fc4713551153e7966978b449861a`)
             .then(response => {
                 res.json(response.data);
             })

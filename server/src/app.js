@@ -11,6 +11,12 @@ function ignoreFavicon(req, res, next) {
         next();
     }
 }
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+    next();
+});
 const mongoDB = 'mongodb+srv://afanas:vbifyz99@weather-zjak3.mongodb.net/test?retryWrites=true&w=majority';
 
 
