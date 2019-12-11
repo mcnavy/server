@@ -13,7 +13,7 @@ class Weather extends React.Component{
 
 
 
-        if(this.props.error){
+        if(this.props.data.error){
 
             return(
                 <div className='Weather error'>
@@ -26,6 +26,7 @@ class Weather extends React.Component{
 
 
             if(this.props.data.pending === false){
+                console.log(this.props);
                 const data = this.props.data.weather;
                 const img = this.props.data.id ? `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`:
                     `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${data.weather[0].icon}.png`

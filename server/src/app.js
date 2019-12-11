@@ -14,15 +14,9 @@ function ignoreFavicon(req, res, next) {
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
     next();
 });
-const mongoDB = 'mongodb+srv://afanas:vbifyz99@weather-zjak3.mongodb.net/test?retryWrites=true&w=majority';
-
-
-mongoose.connect(mongoDB, { useNewUrlParser: true,useUnifiedTopology: true })
-    .then(() => console.log('DB connected'))
-    .catch((err) => console.log('DB error', err));
 app.use(ignoreFavicon);
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,6 +26,15 @@ app.use('/', index_router);
 const port = 3001;
 app.set('port', port);
 
-app.listen(port,()=>console.log(`App listening port : ${port}`));
+//const mongoDB = 'mongodb+srv://afanasy:vbifyz99@cluster0-1pg63.mongodb.net/test?retryWrites=true&w=majority';
+const mongoDB = 'mongodb+srv://saltowl:eadghe@weather-3uans.mongodb.net/weather_db?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true,useUnifiedTopology: true })
+    .then(() => {
+        console.log('DB connected');
+        app.listen(port,()=>console.log(`App listening port : ${port}`));
+        })
+    .catch((err) => console.log('DB error', err));
+
+
 
 export default app;
